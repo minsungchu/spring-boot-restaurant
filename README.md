@@ -99,3 +99,23 @@
 3. interfaces 패키지 추가 및 WelcomeController.java 추가
    - 위치 : main.java.kr.co.fastcampus.eatgo
    - 함수 및 관련 어노테이션 추가(RestController, GetMapping)
+
+### TDD(Test Driven Development)
+
+1. 의미
+   - 테스트를 통한 목표 주도 개발
+   - 사용자 중심 개발
+   - 인터페이스 중심 개발
+2. 목적
+   - 올바르게 작동하는 깔끔한 코드를 만드는 것
+3. TDD Cycle : Red / Green / Refactoring
+   - Red | Test First : 테스트 코드를 우선 작성 (입력 1,2에 대해 출력 3)
+   - Green | Test Code : 메소드를 만듬으로써 테스트 코드가 동작하도록 구현 (입력 1,2에 대한 출력 3)
+   - Refactoring : 리펙토링을 통해 일반화 구현 (입력 x,y 에 대한 출력 z)
+4. 코딩
+   - domain 패키지 추가 : Restaurant.java 파일 추가
+   - 테스트 코드 추가 : RestaurantTests.java 파일 추가
+     - Test library : JUnit 5
+   - issue #1 : assert error
+     - Line 22 in RestaurantTests.java : assertSame(restaurant.getInformation(), "Bob zip in Seoul");
+     - 에러 내용 : 두 인자의 String내용이 같은데도 assert 에러가 발생함.
