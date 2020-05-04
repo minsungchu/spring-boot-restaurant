@@ -152,3 +152,11 @@
    - 가게 추가 : POST /restaurants
    - 가게 수정 : PATCH /restaurants/{id}
    - 가게 삭제 : DELETE /restaurants/{id}
+
+### MVC 구조
+1. Domain
+   - class : Restaurant
+   - member : id, name, address
+2. Controller(=interface package)
+   - Restaurant controller
+        - GET /restaurants(list() 함수, 식당 목록을 불러옴)
