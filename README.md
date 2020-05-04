@@ -119,3 +119,36 @@
    - issue #1 : assert error
      - Line 22 in RestaurantTests.java : assertSame(restaurant.getInformation(), "Bob zip in Seoul");
      - 에러 내용 : 두 인자의 String내용이 같은데도 assert 에러가 발생함.
+
+### REST API
+
+1. 다양한 환경 지원 : 웹, 모바일 등등...
+2. 서로 다른 Front-end를 지원할 수 있어야 함.
+3. 하나의 Back-end로 동일한 기능을 지원해야 함. > 이를 구현할 수 있는 기술이 REST API임.
+4. REST API : REpresentational State Transfer, 리소스의 처리
+   - 표현 상태를 전달하는것, 즉 리소스를 처리하는 것 > CRUD
+   - C | Create | POST
+   - R | Read | GET
+   - U | Update | PUT/PATCH
+   - D | Delete | DELETE
+5. 리소스의 지정 : URI(Uniform Resource Identifier), URL(Uniform Resource Locator)
+   - 리소스 지정할 때, URI 식별자를 사용하거나, URL 지시자를 사용함
+6. 리소스의 분류 : Collection, Member
+   - Member는 Collection에 속한 개별적인 리소스를 의미함
+   - Collection
+     - Read(List) : Collection의 목록을 불러옴
+     - Create : 새로운 리소스를 생성함
+   - Member
+     - Read(Detail) : 리소스의 상세 정보를 불러옴
+     - Update : 리소스를 수정함
+     - Delete : 리소스를 삭제함.
+7. 적용 : Restaurant
+   - Collection : http://host/restaurants
+   - Member : http://host/restaurants/{id}
+8. JSON : JavaScript Object Notation
+9. APIs
+   - 가게 목록 : GET /restaurants
+   - 가게 상세 : GET /restaurants/{id}
+   - 가게 추가 : POST /restaurants
+   - 가게 수정 : PATCH /restaurants/{id}
+   - 가게 삭제 : DELETE /restaurants/{id}
