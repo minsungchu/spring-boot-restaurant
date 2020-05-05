@@ -1,5 +1,7 @@
 package kr.co.fastcampus.eatgo.interfaces;
 
+import kr.co.fastcampus.eatgo.domain.MenuItemRepository;
+import kr.co.fastcampus.eatgo.domain.MenuItemRepositoryImpl;
 import kr.co.fastcampus.eatgo.domain.RestaurantRepository;
 import kr.co.fastcampus.eatgo.domain.RestaurantRepositoryImpl;
 import org.junit.jupiter.api.Test;
@@ -29,6 +31,9 @@ class RestaurantControllerTest {
     @SpyBean(RestaurantRepositoryImpl.class) // interface에는 실질적인 구현내용이 없기 때문에, 실재 구현 내용이 포함된 Impl 클래스를 괄호안애 포함해야 함.
     private RestaurantRepository restaurantRepository;
 
+    @SpyBean(MenuItemRepositoryImpl.class)
+    private MenuItemRepository menuItemRepository;
+
     @Test
     public void list() throws Exception {
         mvc.perform(get("/restaurants")) // get함수 관련 임포트는 직접 타이핑 해야함. 자동 임포트 안됨.
@@ -41,12 +46,13 @@ class RestaurantControllerTest {
     public void detail() throws Exception {
         mvc.perform(get("/restaurants/1004"))
                 .andExpect(status().isOk())
+                .andExpect(content().string(containsString("\"id\":1004")))
                 .andExpect(content().string(containsString("\"name\":\"Bob zip\"")))
-                .andExpect(content().string(containsString("\"id\":1004")));
+                .andExpect(content().string(containsString("Kimchi")));
 
         mvc.perform(get("/restaurants/2020"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("\"name\":\"Cyber Food\"")))
-                .andExpect(content().string(containsString("\"id\":2020")));
+                .andExpect(content().string(containsString("\"id\":2020")))
+                .andExpect(content().string(containsString("\"name\":\"Cyber Food\"")));
     }
 }

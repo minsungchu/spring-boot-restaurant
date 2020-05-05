@@ -153,15 +153,16 @@
    - 가게 수정 : PATCH /restaurants/{id}
    - 가게 삭제 : DELETE /restaurants/{id}
 
-### 프로젝트 구조
-1. Domain | Domain Layer
-   - class : Restaurant(id, name, address)
-   - class : Repository
-        - findAll(), findById(id)
-2. Controller(=interface package) | UI Layer
-   - Restaurant controller
-        - GET /restaurants(findAll() 함수 이용, 식당 목록을 불러옴)
-        - GET /restaurants/{id} (findById(id) 함수 이용, 특정 식당 정보 불러옴)
+### 프로젝트 구조(Layered Architecture)
+1. UI Layer | interfaces package | RestaurantController
+   - GET /restaurants(findAll() 함수 이용, 식당 목록을 불러옴)
+   - GET /restaurants/{id} (findById(id) 함수 이용, 특정 식당 정보 불러옴)
+2. Application Layer | application package | RestaurantService
+3. Domain Layer | domain Package | Restaurant, RestaurantRepository, Menu Item
+   - Restaurant(id, name, address)
+   - RestaurantRepository : findAll(), findById(id)
+   - RestaurantRepositoryImp
+
         
 ### 의존성 주입 (DI, Dependency Injection)
 1. Dependency(의존 관계) : 둘 이상의 객체개 서로 협력
