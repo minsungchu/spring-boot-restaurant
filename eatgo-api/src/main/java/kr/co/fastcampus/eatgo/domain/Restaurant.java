@@ -1,5 +1,7 @@
 package kr.co.fastcampus.eatgo.domain;
 
+import java.util.Objects;
+
 public class Restaurant {
 
     private final String name;
@@ -12,7 +14,7 @@ public class Restaurant {
         this.address = address;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

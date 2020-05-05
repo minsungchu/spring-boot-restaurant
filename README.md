@@ -153,10 +153,12 @@
    - 가게 수정 : PATCH /restaurants/{id}
    - 가게 삭제 : DELETE /restaurants/{id}
 
-### MVC 구조
-1. Domain
-   - class : Restaurant
-   - member : id, name, address
-2. Controller(=interface package)
+### 프로젝트 구조
+1. Domain | Domain Layer
+   - class : Restaurant(id, name, address)
+   - class : Repository
+        - findAll(), findById(id)
+2. Controller(=interface package) | UI Layer
    - Restaurant controller
-        - GET /restaurants(list() 함수, 식당 목록을 불러옴)
+        - GET /restaurants(findAll() 함수 이용, 식당 목록을 불러옴)
+        - GET /restaurants/{id} (findById(id) 함수 이용, 특정 식당 정보 불러옴)

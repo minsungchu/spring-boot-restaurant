@@ -26,8 +26,21 @@ class RestaurantControllerTest {
     @Test
     public void list() throws Exception {
         mvc.perform(get("/restaurants")) // get함수 관련 임포트는 직접 타이핑 해야함. 자동 임포트 안됨.
-                        .andExpect(status().isOk())
-                        .andExpect(content().string(containsString("\"name\":\"Bob zip\"")))
-                        .andExpect(content().string(containsString("\"id\":1004")));
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("\"name\":\"Bob zip\"")))
+                .andExpect(content().string(containsString("\"id\":1004")));
+    }
+
+    @Test
+    public void detail() throws Exception {
+        mvc.perform(get("/restaurants/1004"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("\"name\":\"Bob zip\"")))
+                .andExpect(content().string(containsString("\"id\":1004")));
+
+        mvc.perform(get("/restaurants/2020"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("\"name\":\"Cyber Food\"")))
+                .andExpect(content().string(containsString("\"id\":2020")));
     }
 }
