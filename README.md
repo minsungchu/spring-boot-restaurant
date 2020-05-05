@@ -162,3 +162,19 @@
    - Restaurant controller
         - GET /restaurants(findAll() 함수 이용, 식당 목록을 불러옴)
         - GET /restaurants/{id} (findById(id) 함수 이용, 특정 식당 정보 불러옴)
+        
+### 의존성 주입 (DI, Dependency Injection)
+1. Dependency(의존 관계) : 둘 이상의 객체개 서로 협력
+    - A는 B에 의존 = A는 B를 사용 = B의 변화가 A에 영향
+    - 의존 관계의 관리 필요
+2. Controller는 Repository에 의존
+3. Repository 생성 : Repository 객체 생성의 책임을 Controller가 가지고 있다.
+4. Controller에 Repository를 연결
+5. Spring IoC Container : 객체간의 의존관계를 스프링에서 관리를 한다.
+    - @Component
+    - @Autowired
+6. 장점
+    - 의존성 주입을 통해 Controller와 Repository간의 직접적인 의존관계를 분리할 수 있다.
+    - 강하게 연결되어 있는 의존관계를 유연하게 바꿀 수 있다.
+    - 객체를 직접 생성하고 관리하는 작업들을 스프링이 알아서 해줌으로, 코드가 간단해진다.
+    
