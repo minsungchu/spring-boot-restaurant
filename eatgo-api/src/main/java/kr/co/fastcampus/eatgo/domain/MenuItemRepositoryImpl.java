@@ -14,7 +14,7 @@ public class MenuItemRepositoryImpl implements MenuItemRepository {
     }
 
     @Override
-    public List<MenuItem> findAllByRestaurantID(Long restaurantId) {
+    public List<MenuItem> findAllByRestaurantId(Long restaurantId) {
         return menuItems;
     }
 }
