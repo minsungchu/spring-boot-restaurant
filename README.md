@@ -150,6 +150,10 @@
    - 가게 목록 : GET /restaurants
    - 가게 상세 : GET /restaurants/{id}
    - 가게 추가 : POST /restaurants
+     - HTTP Status 201(Created)
+     - Header Location
+     - Empty {}
+     - HTTPie
    - 가게 수정 : PATCH /restaurants/{id}
    - 가게 삭제 : DELETE /restaurants/{id}
 
