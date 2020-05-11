@@ -178,4 +178,9 @@
     - 의존성 주입을 통해 Controller와 Repository간의 직접적인 의존관계를 분리할 수 있다.
     - 강하게 연결되어 있는 의존관계를 유연하게 바꿀 수 있다.
     - 객체를 직접 생성하고 관리하는 작업들을 스프링이 알아서 해줌으로, 코드가 간단해진다.
-    
+
+### 가짜객체
+1. Mock Object
+   - Mockito (Mock Object Framework)
+2. Spring Test
+3. POJO - Plain Old Java Object

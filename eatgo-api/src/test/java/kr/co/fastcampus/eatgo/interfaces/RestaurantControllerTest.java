@@ -1,19 +1,21 @@
 package kr.co.fastcampus.eatgo.interfaces;
 
 import kr.co.fastcampus.eatgo.application.RestaurantService;
-import kr.co.fastcampus.eatgo.domain.MenuItemRepository;
-import kr.co.fastcampus.eatgo.domain.MenuItemRepositoryImpl;
-import kr.co.fastcampus.eatgo.domain.RestaurantRepository;
-import kr.co.fastcampus.eatgo.domain.RestaurantRepositoryImpl;
+import kr.co.fastcampus.eatgo.domain.*;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.hamcrest.core.StringContains.containsString;
+import static org.mockito.BDDMockito.given;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -29,29 +31,37 @@ class RestaurantControllerTest {
     @Autowired
     private MockMvc mvc;
 
-    @SpyBean(RestaurantService.class)
+    @MockBean // MockBean으로 바꾸면, 가짜 객체로 바뀐것이고 이것은 Repository를 사용하지 않기 때문에 SpyBean을 삭제할 수 있다.
     private RestaurantService restaurantService;
-
-    @SpyBean(RestaurantRepositoryImpl.class) // interface에는 실질적인 구현내용이 없기 때문에, 실재 구현 내용이 포함된 Impl 클래스를 괄호안애 포함해야 함.
-    private RestaurantRepository restaurantRepository;
-
-    @SpyBean(MenuItemRepositoryImpl.class)
-    private MenuItemRepository menuItemRepository;
 
     @Test
     public void list() throws Exception {
+        List<Restaurant> restaurants = new ArrayList<>();
+        restaurants.add(new Restaurant(1004L, "JOKER House", "Seoul"));
+
+        given(restaurantService.getRestaurants()).willReturn(restaurants);
+
         mvc.perform(get("/restaurants")) // get함수 관련 임포트는 직접 타이핑 해야함. 자동 임포트 안됨.
                 .andExpect(status().isOk())
-                .andExpect(content().string(containsString("\"name\":\"Bob zip\"")))
+                .andExpect(content().string(containsString("\"name\":\"JOKER House\"")))
                 .andExpect(content().string(containsString("\"id\":1004")));
     }
 
     @Test
     public void detail() throws Exception {
+        Restaurant restaurant1 = new Restaurant(1004L, "JOKER House", "Seoul");
+        restaurant1.addMenuItem(new MenuItem("Kimchi"));
+
+        Restaurant restaurant2 = new Restaurant(2020L, "Cyber Food", "Seoul");
+        restaurant2.addMenuItem(new MenuItem("Kimchi"));
+
+        given(restaurantService.getRestaurant(1004L)).willReturn(restaurant1);
+        given(restaurantService.getRestaurant(2020L)).willReturn(restaurant2);
+
         mvc.perform(get("/restaurants/1004"))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("\"id\":1004")))
-                .andExpect(content().string(containsString("\"name\":\"Bob zip\"")))
+                .andExpect(content().string(containsString("\"name\":\"JOKER House\"")))
                 .andExpect(content().string(containsString("Kimchi")));
 
         mvc.perform(get("/restaurants/2020"))
