@@ -185,6 +185,14 @@
 
 ### 가짜객체
 1. Mock Object
-   - Mockito (Mock Object Framework)
+    - Mockito (Mock Object Framework)
 2. Spring Test
 3. POJO - Plain Old Java Object
+
+### JPA - Persistence(영속화) 표준
+1. JPA : Java Persistence API
+2. Hibernate : JPA 라이브러리
+3. @Entity
+4. Spring Data JPA : 쉽게 JPA를 활용할 수 있도록 한다.
+5. H2 Database
+    - In-memory 방식 사용

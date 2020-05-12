@@ -30,7 +30,7 @@ public class RestaurantService {
     }
 
     public Restaurant getRestaurant(Long id){
-        Restaurant restaurant = restaurantRepository.findById(id);
+        Restaurant restaurant = restaurantRepository.findById(id).orElse(null); // 실무에서는 이렇게 안씀. 리턴값을 저장하는 restaurant에 대한 예외처리가 없기 때문임.
 
         List<MenuItem> menuItems = menuItemRepository.findAllByRestaurantId(id);
         restaurant.setMenuItem(menuItems);
