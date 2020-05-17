@@ -196,3 +196,8 @@
 4. Spring Data JPA : 쉽게 JPA를 활용할 수 있도록 한다.
 5. H2 Database
     - In-memory 방식 사용
+    
+### Web
+1. HTML, CSS, JS
+2. Node.js, Webpack
+3. CORS (Cross-Origin Resource Sharing) > @CrossOrigin
