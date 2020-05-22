@@ -155,6 +155,8 @@
      - Empty {}
      - HTTPie
    - 가게 수정 : PATCH /restaurants/{id}
+     - HTTP Status 200
+     - @Transactional : 자동 DB 반영
    - 가게 삭제 : DELETE /restaurants/{id}
 
 ### 프로젝트 구조(Layered Architecture)
